@@ -1,7 +1,7 @@
 const gameBoardModule = (() => {
-  let boardArr = ["", "", "", "", "", "", "", "", ""];
-  const gameBoard = document.querySelector("#board");
-  const gameCells = Array.from(document.querySelectorAll(".cell"));
+  let boardArr = ['', '', '', '', '', '', '', '', ''];
+  const gameBoard = document.querySelector('#board');
+  const gameCells = Array.from(document.querySelectorAll('.cell'));
   let winner = null;
 
   const render = () => {
@@ -23,17 +23,17 @@ const gameBoardModule = (() => {
     ];
     winArr.forEach((combo) => {
       if (
-        boardArr[combo[0]] &&
-        boardArr[combo[0]] === boardArr[combo[1]] &&
-        boardArr[combo[0]] === boardArr[combo[2]]
+        boardArr[combo[0]]
+        && boardArr[combo[0]] === boardArr[combo[1]]
+        && boardArr[combo[0]] === boardArr[combo[2]]
       ) {
-        winner = "current";
+        winner = 'current';
       }
     });
-    return winner || (boardArr.includes("") ? null : "Tie");
+    return winner || (boardArr.includes('') ? null : 'Tie');
   };
   const resetBoard = () => {
-    boardArr = ["", "", "", "", "", "", "", "", ""];
+    boardArr = ['', '', '', '', '', '', '', '', ''];
   };
   return {
     render,
@@ -48,7 +48,7 @@ const gameBoardModule = (() => {
 const player = (name, symbol) => {
   const playerTurn = (board, cell) => {
     const index = board.gameCells.findIndex((position) => position === cell);
-    if (board.boardArr[index] === "") {
+    if (board.boardArr[index] === '') {
       board.render();
       return index;
     }
@@ -58,10 +58,10 @@ const player = (name, symbol) => {
 };
 
 const gamePlay = (() => {
-  const playerOneName = document.querySelector("#player1");
-  const playerTwoName = document.querySelector("#player2");
-  const form = document.querySelector(".player-info");
-  const resetbtn = document.querySelector("#reset");
+  const playerOneName = document.querySelector('#player1');
+  const playerTwoName = document.querySelector('#player2');
+  const form = document.querySelector('.player-info');
+  const resetbtn = document.querySelector('#reset');
   let currentPlayer;
   let playerOne;
   let playerTwo;
@@ -76,68 +76,68 @@ const gamePlay = (() => {
 
   const gameRound = () => {
     const board = gameBoardModule;
-    const gameStatus = document.querySelector(".game-status");
-    if (currentPlayer.name !== "") {
+    const gameStatus = document.querySelector('.game-status');
+    if (currentPlayer.name !== '') {
       gameStatus.textContent = `${currentPlayer.name}'s Turn`;
     } else {
-      gameStatus.textContent = "Board: ";
+      gameStatus.textContent = 'Board: ';
     }
 
-    board.gameBoard.addEventListener("click", (e) => {
+    board.gameBoard.addEventListener('click', (e) => {
       const move = currentPlayer.playerTurn(board, e.target);
       if (move !== null) {
         board.boardArr[move] = `${currentPlayer.symbol}`;
-        if (currentPlayer.symbol === "X") {
-          e.target.classList.add("x");
+        if (currentPlayer.symbol === 'X') {
+          e.target.classList.add('x');
         } else {
-          e.target.classList.add("o");
+          e.target.classList.add('o');
         }
         board.render();
         const winStatus = board.checkWinCombo();
-        if (winStatus === "Tie") {
+        if (winStatus === 'Tie') {
           gameStatus.textContent = "It's a Tie! You're both Losers 😝";
         } else if (winStatus === null) {
           switchPlayer();
           gameStatus.textContent = `${currentPlayer.name}'s Turn`;
         } else {
           gameStatus.textContent = `Congratulations ${currentPlayer.name}! You won! 🥳🏆`;
-            setTimeout(function () {
-                board.resetBoard();
-                document.querySelectorAll(".cell").forEach((e) => {
-                    e.classList.remove("x");
-                    e.classList.remove("o");
-                });
-                board.render();
-            }, 3000);
+          setTimeout(() => {
+            board.resetBoard();
+            document.querySelectorAll('.cell').forEach((e) => {
+              e.classList.remove('x');
+              e.classList.remove('o');
+            });
+            board.render();
+          }, 3000);
         }
       }
     });
   };
 
   const gameStart = () => {
-    if (playerOneName.value !== "" && playerTwoName.value !== "") {
-      playerOne = player(playerOneName.value, "X");
-      playerTwo = player(playerTwoName.value, "O");
+    if (playerOneName.value !== '' && playerTwoName.value !== '') {
+      playerOne = player(playerOneName.value, 'X');
+      playerTwo = player(playerTwoName.value, 'O');
       currentPlayer = playerOne;
       gameRound();
     }
   };
 
-  form.addEventListener("submit", (e) => {
+  form.addEventListener('submit', (e) => {
     e.preventDefault();
-    if (playerOneName.value !== "" && playerTwoName.value !== "") {
+    if (playerOneName.value !== '' && playerTwoName.value !== '') {
       gameStart();
-      form.classList.add("d-none");
-      document.querySelector(".place").classList.remove("d-none");
+      form.classList.add('d-none');
+      document.querySelector('.place').classList.remove('d-none');
     } else {
       reload();
     }
   });
 
-  resetbtn.addEventListener("click", () => {
-    document.querySelector(".game-status").textContent = "Board: ";
-    document.querySelector("#player1").value = "";
-    document.querySelector("#player2").value = "";
+  resetbtn.addEventListener('click', () => {
+    document.querySelector('.game-status').textContent = 'Board: ';
+    document.querySelector('#player1').value = '';
+    document.querySelector('#player2').value = '';
     location.reload();
   });
   return { gameStart };
