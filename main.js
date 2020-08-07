@@ -37,3 +37,15 @@ const gameBoardModule = (() => {
         render, gameBoard, gameCells, boardArr, checkWinCombo, resetBoard
     }
 }) ();
+
+const player = (name, symbol) => {
+    const playerTurn = (board, cell) => {
+        const index = board.gameCells.findIndex((position) => position === cell )
+        if (board.boardArr[index] === '') {
+            board.render()
+            return index
+        }
+        return null
+    }
+    return {name, symbol, playerTurn}
+}
