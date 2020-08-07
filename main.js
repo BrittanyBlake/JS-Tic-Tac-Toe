@@ -101,12 +101,16 @@ const gamePlay = (() => {
           gameStatus.textContent = `${currentPlayer.name}'s Turn`;
         } else {
           gameStatus.textContent = `Congratulations ${currentPlayer.name}! You won! 🥳🏆`;
-          board.resetBoard();
-          document.querySelectorAll(".cell").forEach((e) => {
-            e.classList.remove("x");
-            e.classList.remove("o");
-          });
-          board.render();
+            setTimeout(function () {
+                board.resetBoard();
+                document.querySelectorAll(".cell").forEach((e) => {
+                    e.classList.remove("x");
+                    e.classList.remove("o");
+                });
+                board.render();
+            }, 3000);
+          
+          
         }
       }
     });
