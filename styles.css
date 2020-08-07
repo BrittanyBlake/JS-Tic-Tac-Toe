@@ -48,10 +48,24 @@ body {
 }
 
 .player-info, .game-status {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 50px;
-}
+  display: grid;
+  grid-gap: 50px;
+  }
+  
+  .one{
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  }
+  
+  .two{
+  grid-column: 2 / 2;
+  grid-row: 1 / 2;
+  }
+  
+  .three {
+  grid-column: 1/ span 2;
+  grid-row: 2 / span 2;
+  } 
 .player-info, .game-status {
   width: 80%;
 }
