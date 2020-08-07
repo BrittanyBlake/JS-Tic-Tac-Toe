@@ -10,7 +10,6 @@ body {
   font-family: sans-serif;
   justify-content: center;
 }
-
 .container {
   background: #14bdac;
   margin: 50px;
@@ -21,6 +20,8 @@ body {
 .title {
   text-align: center;
 }
+
+
 
 .title span {
   color: #f2ebd3;
@@ -46,7 +47,15 @@ body {
   color: #f2ebd3;
 }
 
-.game-grid {
+.player-info, .game-status {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 50px;
+}
+.player-info, .game-status {
+  width: 80%;
+}
+#board {
   background: #0da192;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -55,19 +64,19 @@ body {
   margin-top: 50px;
 }
 
-.game-cell {
+.cell{
   background: #14bdac;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  height: 150px;
-  width: 150px;
+  height: 250px;
 }
 
 .x,
 .o {
   cursor: default;
+  color: #14bdac;
 }
 
 .x::after {
