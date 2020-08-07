@@ -30,7 +30,7 @@ const gameBoardModule = (() => {
         winner = "current";
       }
     });
-    return winner || (boardArr.includes("") ? null : "tie");
+    return winner || (boardArr.includes("") ? null : "Tie");
   };
   const resetBoard = () => {
     boardArr = ["", "", "", "", "", "", "", "", ""];
@@ -109,8 +109,6 @@ const gamePlay = (() => {
                 });
                 board.render();
             }, 3000);
-          
-          
         }
       }
     });
