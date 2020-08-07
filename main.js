@@ -130,7 +130,7 @@ const gamePlay = (() => {
       form.classList.add('d-none');
       document.querySelector('.place').classList.remove('d-none');
     } else {
-      reload();
+      window.location.reload();
     }
   });
 
@@ -138,7 +138,8 @@ const gamePlay = (() => {
     document.querySelector('.game-status').textContent = 'Board: ';
     document.querySelector('#player1').value = '';
     document.querySelector('#player2').value = '';
-    location.reload();
+    window.location.reload();
   });
   return { gameStart };
 })();
+gamePlay.gameStart();

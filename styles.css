@@ -10,6 +10,7 @@ body {
   font-family: sans-serif;
   justify-content: center;
 }
+
 .container {
   background: #14bdac;
   margin: 50px;
@@ -20,8 +21,6 @@ body {
 .title {
   text-align: center;
 }
-
-
 
 .title span {
   color: #f2ebd3;
@@ -47,28 +46,28 @@ body {
   color: #f2ebd3;
 }
 
-.player-info, .game-status {
+.player-info,
+.game-status {
   display: grid;
   grid-gap: 50px;
-  }
-  
-  .one{
-  grid-column: 1 / 2;
-  grid-row: 1 / 2;
-  }
-  
-  .two{
-  grid-column: 2 / 2;
-  grid-row: 1 / 2;
-  }
-  
-  .three {
-  grid-column: 1/ span 2;
-  grid-row: 2 / span 2;
-  } 
-.player-info, .game-status {
   width: 80%;
 }
+
+.one {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+}
+
+.two {
+  grid-column: 2 / 2;
+  grid-row: 1 / 2;
+}
+
+.three {
+  grid-column: 1/ span 2;
+  grid-row: 2 / span 2;
+}
+
 #board {
   background: #0da192;
   display: grid;
@@ -78,7 +77,7 @@ body {
   margin-top: 50px;
 }
 
-.cell{
+.cell {
   background: #14bdac;
   display: flex;
   justify-content: center;
