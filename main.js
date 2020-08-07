@@ -49,3 +49,64 @@ const player = (name, symbol) => {
     }
     return {name, symbol, playerTurn}
 }
+
+const gamePlay = (() => {
+    const playerOneName = document.querySelector('#player1');
+    const playerTwoName = document.querySelector('#player2');
+    const form = document.querySelector('.player-info');
+    const resetbtn = document.querySelector('#reset');
+    let currentPlayer;
+    let playerOne;
+    let playerTwo;
+
+    const switchPlayer = () => {
+        if(currentPlayer === playerOne){
+            currentPlayer = playerTwo
+        } else {
+            currentPlayer = playerOne
+        }
+    }
+
+    const gameRound = () => {
+        const board = gameBoardModule
+        const gameStatus = document.querySelector('.game-status')
+        if (currentPlayer.name !== ''){
+            gameStatus.textContent = `${currentPlayer.name}'s Turn`
+        } else {
+            gameStatus.textContent = 'Board: '
+        }
+
+        board.gameBoard.addEventListener('click', (e) => {
+            const move = currentPlayer.playerTurn(board, e.target)
+            if (move !== null) {
+                board.boardArr[move] = `${currentPlayer.symbol}`
+                if ( currentPlayer.symbol === 'X') {
+                    e.target.classList.add('x')
+                } else {
+                    e.target.classList.add('o')
+                }
+                board.render()
+                const winStatus = board.checkWinCombo();
+                if (winStatus === 'Tie'){
+                    gameStatus.textContent = "It's a Tie! You're both Losers 😝"
+                } else if (winStatus === null) {
+                    switchPlayer()
+                    gameStatus.textContent = `${currentPlayer.name}'s Turn` 
+                } else {
+                    gameStatus.textContent = `Congratulations ${currentPlayer.name}! You won! 🥳🏆`
+                    board.resetBoard();
+                    document.querySelectorAll('.cell').forEach((e) => {
+                        e.classList.remove('x')
+                        e.classList.remove('o')
+                    })
+                    board.render();
+                }
+            }
+        })
+
+    }
+
+    
+
+
+}) ();
