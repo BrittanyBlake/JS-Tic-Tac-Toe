@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- CSS only -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css"
+    integrity="sha384-VCmXjywReHh4PwowAiWNagnWcLhlEJLA5buUprzK8rxFgeH0kww/aWY76TfkUoSX" crossorigin="anonymous">
+  <link rel="stylesheet" href="styles.css">
+  <title>Tic Tac Toe</title>
+</head>
+
+<body>
+  <div class="container">
+    <h1 class="title">Tic <span>Tac</span> Toe</h1>
+    <h5 class="text-center">Enter players' names to start the game</h5>
+    
+    <div class="col-12 place mt-3 d-none">
+      <div class="alert alert-primary game-status text-center col-4 offset-4">
+        <h4>Board:</h4>
+      </div>
+      <div id="board">
+        <div class="cell top-left"></div>
+        <div class="cell top-middle"></div>
+        <div class="cell top-right"></div>
+        <div class="cell middle-left"></div>
+        <div class="cell middle-middle"></div>
+        <div class="cell middle-right"></div>
+        <div class="cell bottom-left"></div>
+        <div class="cell bottom-middle"></div>
+        <div class="cell bottom-right"></div>
+      </div>
+      <button id="reset" class="mt-4 text-center btn btn-primary">Restart</button>
+    </div>
+    <div class="container">
+      <form class="player-info mb-4">
+        <div class="form-group one">
+          <label for="player1">Player 1</label>
+          <input type="text" class="form-control" id="player1" placeholder="Player one's name">
+        </div>
+
+        <div class="form-group two">
+          <label for="player2">Player 2</label>
+          <input type="text" class="form-control" id="player2" placeholder="Player two's name">
+        </div>
+        <button type="submit" class="btn btn-primary three">Press Play</button>
+      </form>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
