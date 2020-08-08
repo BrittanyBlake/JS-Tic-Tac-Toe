@@ -1,0 +1,149 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  color: #545454;
+  display: flex;
+  font-family: sans-serif;
+  justify-content: center;
+}
+
+.container {
+  background: #14bdac;
+  margin: 50px;
+  padding: 50px;
+  border-radius: 25px;
+}
+
+.title {
+  text-align: center;
+}
+
+.title span {
+  color: #f2ebd3;
+}
+
+.status-action {
+  display: flex;
+  margin-top: 25px;
+  font-size: 25px;
+  justify-content: space-around;
+  height: 30px;
+}
+
+.status span {
+  color: #f2ebd3;
+}
+
+.reset {
+  cursor: pointer;
+}
+
+.reset:hover {
+  color: #f2ebd3;
+}
+
+.player-info,
+.game-status {
+  display: grid;
+  grid-gap: 50px;
+  width: 80%;
+}
+
+.one {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+}
+
+.two {
+  grid-column: 2 / 2;
+  grid-row: 1 / 2;
+}
+
+.three {
+  grid-column: 1/ span 2;
+  grid-row: 2 / span 2;
+}
+
+#board {
+  background: #0da192;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-gap: 15px;
+  margin-top: 50px;
+}
+
+.cell {
+  background: #14bdac;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  height: 200px;
+}
+
+.x,
+.o {
+  cursor: default;
+  color: #14bdac;
+}
+
+.x::after {
+  content: '×';
+  font-size: 200px;
+  color: blue;
+}
+
+.o::after {
+  content: '○';
+  color: #f2ebd3;
+  font-size: 225px;
+}
+
+.won::after {
+  color: #bd022f;
+}
+
+@media only screen and (max-width: 1024px) {
+  .game-grid {
+    margin-top: 25px;
+    grid-gap: 10px;
+  }
+
+  .game-cell {
+    height: 150px;
+    width: 150px;
+  }
+
+  .x::after {
+    font-size: 150px;
+  }
+
+  .o::after {
+    font-size: 175px;
+  }
+}
+
+@media only screen and (max-width: 540px) {
+  .container {
+    margin: 25px;
+    padding: 25px;
+  }
+
+  .game-cell {
+    height: 100px;
+    width: 100px;
+  }
+
+  .x::after {
+    font-size: 100px;
+  }
+
+  .o::after {
+    font-size: 125px;
+  }
+}
