@@ -56,8 +56,16 @@ const player = (name, symbol) => {
   };
   return { name, symbol, playerTurn };
 };
+const reset = () => {
+  const resetTheBoard = gameBoardModule.resetBoard();
+  return resetTheBoard
+  
+}
+
+console.log(reset);
 
 const gamePlay = (() => {
+  
   const playerOneName = document.querySelector('#player1');
   const playerTwoName = document.querySelector('#player2');
   const form = document.querySelector('.player-info');
@@ -113,33 +121,48 @@ const gamePlay = (() => {
       }
     });
   };
+// const gameStart = () => {
+//   if (playerOneName.value !== "" && playerTwoName.value !== "") {
+//     playerOne = player(playerOneName.value, "X");
+//     playerTwo = player(playerTwoName.value, "O");
+//     currentPlayer = playerOne;
+//     gameRound();
+//   }
+// };
+  
 
-  const gameStart = () => {
-    if (playerOneName.value !== '' && playerTwoName.value !== '') {
-      playerOne = player(playerOneName.value, 'X');
-      playerTwo = player(playerTwoName.value, 'O');
-      currentPlayer = playerOne;
-      gameRound();
-    }
-  };
+  document.addEventListener("DOMContentLoaded", function () {
+    
 
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    if (playerOneName.value !== '' && playerTwoName.value !== '') {
-      gameStart();
-      form.classList.add('d-none');
-      document.querySelector('.place').classList.remove('d-none');
-    } else {
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      if (playerOneName.value !== "" && playerTwoName.value !== "") {
+        playerOne = player(playerOneName.value, "X");
+        playerTwo = player(playerTwoName.value, "O");
+        currentPlayer = playerOne;
+        gameRound();
+        form.classList.add("d-none");
+        document.querySelector(".place").classList.remove("d-none");
+      } else {
+        window.location.reload();
+      }
+    });
+
+    resetbtn.addEventListener("click", () => {
+      document.querySelector(".game-status").textContent = "Board: ";
+      document.querySelector("#player1").value = "";
+      document.querySelector("#player2").value = "";
       window.location.reload();
-    }
-  });
+    });
+    
+    // gamePlay.gameStart();
 
-  resetbtn.addEventListener('click', () => {
-    document.querySelector('.game-status').textContent = 'Board: ';
-    document.querySelector('#player1').value = '';
-    document.querySelector('#player2').value = '';
-    window.location.reload();
   });
-  return { gameStart };
+  return { switchPlayer, gameRound, reset };
+  
+
+  
 })();
-gamePlay.gameStart();
+// console.log(gamePlay.reset);
+
+module.exports = { gameBoardModule, player, gamePlay, reset };
