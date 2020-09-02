@@ -1,14 +1,14 @@
-import { gameBoardModule } from "../main";
-import { gamePlay } from "../main";
+import { gameBoardModule, gamePlay } from '../main';
 
-const main = require("../main");
 
-describe("checking switch player", () => {
-  test("if current player is player 1 then it should switch to player 2", () => {
-    gamePlay.playerOne = "Brittany";
-    gamePlay.playerTwo = "Precious";
+const main = require('../main');
+
+describe('checking switch player', () => {
+  test('if current player is player 1 then it should switch to player 2', () => {
+    gamePlay.playerOne = 'Brittany';
+    gamePlay.playerTwo = 'Precious';
     let currentPlayer = gamePlay.playerOne;
-    gameBoardModule.boardArr[1] = "X";
+    gameBoardModule.boardArr[1] = 'X';
     gameBoardModule.checkWinCombo();
     gamePlay.switchPlayer();
     currentPlayer = gamePlay.playerTwo;
@@ -16,11 +16,11 @@ describe("checking switch player", () => {
     expect(currentPlayer).toBe(gamePlay.playerTwo);
   });
 
-  test("if current player is player 1 then it should switch to player 2", () => {
-    gamePlay.playerOne = "Brittany";
-    gamePlay.playerTwo = "Precious";
+  test('if current player is player 1 then it should switch to player 2', () => {
+    gamePlay.playerOne = 'Brittany';
+    gamePlay.playerTwo = 'Precious';
     let currentPlayer = gamePlay.playerOne;
-    gameBoardModule.boardArr[1] = "X";
+    gameBoardModule.boardArr[1] = 'X';
     gameBoardModule.checkWinCombo();
     gamePlay.switchPlayer();
     currentPlayer = gamePlay.playerTwo;
@@ -29,9 +29,9 @@ describe("checking switch player", () => {
   });
 });
 
-it("resets the board array", () => {
-  const addMock = jest.spyOn(main, "resetB");
+it('resets the board array', () => {
+  const addMock = jest.spyOn(main, 'resetB');
 
   const result = addMock();
-  expect(result).toStrictEqual(["", "", "", "", "", "", "", "", ""]);
+  expect(result).toStrictEqual(['', '', '', '', '', '', '', '', '']);
 });
