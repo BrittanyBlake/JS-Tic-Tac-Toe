@@ -1,0 +1,33 @@
+{
+  "name": "JS-Tic-Tac-Toe",
+  "version": "1.0.0",
+  "description": "<!-- *** Thanks for checking out this README Template. If you have a suggestion that would *** make this better, please fork the repo and create a pull request or simply open *** an issue with the tag \"enhancement\". *** Thanks again! Now go create something AMAZING! :D -->",
+  "main": "main.js",
+  "dependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2",
+    "stylelint-config-standard": "^20.0.0",
+    "stylelint-csstree-validator": "^1.8.0",
+    "stylelint-scss": "^3.17.2",
+    "stylelint": "^13.3.3"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.11.5",
+    "jest": "^26.4.2"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BrittanyBlake/JS-Tic-Tac-Toe.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BrittanyBlake/JS-Tic-Tac-Toe/issues"
+  },
+  "homepage": "https://github.com/BrittanyBlake/JS-Tic-Tac-Toe#readme"
+}

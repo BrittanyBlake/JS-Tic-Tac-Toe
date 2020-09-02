@@ -56,6 +56,52 @@ const player = (name, symbol) => {
   };
   return { name, symbol, playerTurn };
 };
+const reset = () => {
+  const resetTheBoard = gameBoardModule.resetBoard();
+  return resetTheBoard;
+};
+
+/* eslint-disable */
+const playerInfo = (player, token, imgLink) => ({ player, token, imgLink });
+const player1Name = playerInfo(
+  '',
+  'X',
+  'https://img.icons8.com/ios-filled/160/000000/x.png',
+);
+const player2Name = playerInfo(
+  'player',
+  'O',
+  'https://img.icons8.com/ios-filled/100/000000/o.png',
+);
+const origBoard = [''];
+const winningCombs = [
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8],
+  [0, 3, 6],
+  [1, 4, 7],
+  [2, 5, 8],
+  [0, 4, 8],
+  [6, 4, 2],
+];
+const checkWin = (board, currentPlayer) => {
+  const player = currentPlayer.token;
+  const turnPlayed = board.reduce(
+    (acc, token, idx) =>
+      token === currentPlayer.token ? acc.concat(idx) : acc,
+    []
+  );
+  let gameWon = "tie";
+
+  for (const [index, win] of winningCombs.entries()) {
+    if (win.every((elem) => turnPlayed.indexOf(elem) !== -1)) {
+      gameWon = { index, player, currentPlayer: currentPlayer.player };
+    }
+  }
+  return gameWon;
+  /* eslint-enable */
+};
+
 
 const gamePlay = (() => {
   const playerOneName = document.querySelector('#player1');
@@ -114,32 +160,37 @@ const gamePlay = (() => {
     });
   };
 
-  const gameStart = () => {
-    if (playerOneName.value !== '' && playerTwoName.value !== '') {
-      playerOne = player(playerOneName.value, 'X');
-      playerTwo = player(playerTwoName.value, 'O');
-      currentPlayer = playerOne;
-      gameRound();
-    }
-  };
+  document.addEventListener('DOMContentLoaded', () => {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (playerOneName.value !== '' && playerTwoName.value !== '') {
+        playerOne = player(playerOneName.value, 'X');
+        playerTwo = player(playerTwoName.value, 'O');
+        currentPlayer = playerOne;
+        gameRound();
+        form.classList.add('d-none');
+        document.querySelector('.place').classList.remove('d-none');
+      } else {
+        window.location.reload();
+      }
+    });
 
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    if (playerOneName.value !== '' && playerTwoName.value !== '') {
-      gameStart();
-      form.classList.add('d-none');
-      document.querySelector('.place').classList.remove('d-none');
-    } else {
+    resetbtn.addEventListener('click', () => {
+      document.querySelector('.game-status').textContent = 'Board: ';
+      document.querySelector('#player1').value = '';
+      document.querySelector('#player2').value = '';
       window.location.reload();
-    }
+    });
   });
-
-  resetbtn.addEventListener('click', () => {
-    document.querySelector('.game-status').textContent = 'Board: ';
-    document.querySelector('#player1').value = '';
-    document.querySelector('#player2').value = '';
-    window.location.reload();
-  });
-  return { gameStart };
+  return { switchPlayer, gameRound, reset };
 })();
-gamePlay.gameStart();
+
+const Emptyboard = ['', '', '', '', '', '', '', '', ''];
+
+module.exports = {
+  checkWin,
+  winningCombs,
+  gamePlay,
+  gameBoardModule,
+  resetB: () => Emptyboard,
+};
