@@ -1,7 +1,7 @@
 const gameBoardModule = (() => {
-  let boardArr = ['', '', '', '', '', '', '', '', ''];
-  const gameBoard = document.querySelector('#board');
-  const gameCells = Array.from(document.querySelectorAll('.cell'));
+  let boardArr = ["", "", "", "", "", "", "", "", ""];
+  const gameBoard = document.querySelector("#board");
+  const gameCells = Array.from(document.querySelectorAll(".cell"));
   let winner = null;
 
   const render = () => {
@@ -23,17 +23,17 @@ const gameBoardModule = (() => {
     ];
     winArr.forEach((combo) => {
       if (
-        boardArr[combo[0]]
-        && boardArr[combo[0]] === boardArr[combo[1]]
-        && boardArr[combo[0]] === boardArr[combo[2]]
+        boardArr[combo[0]] &&
+        boardArr[combo[0]] === boardArr[combo[1]] &&
+        boardArr[combo[0]] === boardArr[combo[2]]
       ) {
-        winner = 'current';
+        winner = "current";
       }
     });
-    return winner || (boardArr.includes('') ? null : 'Tie');
+    return winner || (boardArr.includes("") ? null : "Tie");
   };
   const resetBoard = () => {
-    boardArr = ['', '', '', '', '', '', '', '', ''];
+    boardArr = ["", "", "", "", "", "", "", "", ""];
   };
   return {
     render,
@@ -48,7 +48,7 @@ const gameBoardModule = (() => {
 const player = (name, symbol) => {
   const playerTurn = (board, cell) => {
     const index = board.gameCells.findIndex((position) => position === cell);
-    if (board.boardArr[index] === '') {
+    if (board.boardArr[index] === "") {
       board.render();
       return index;
     }
@@ -58,18 +58,14 @@ const player = (name, symbol) => {
 };
 const reset = () => {
   const resetTheBoard = gameBoardModule.resetBoard();
-  return resetTheBoard
-  
-}
-
-console.log(reset);
+  return resetTheBoard;
+};
 
 const gamePlay = (() => {
-  
-  const playerOneName = document.querySelector('#player1');
-  const playerTwoName = document.querySelector('#player2');
-  const form = document.querySelector('.player-info');
-  const resetbtn = document.querySelector('#reset');
+  const playerOneName = document.querySelector("#player1");
+  const playerTwoName = document.querySelector("#player2");
+  const form = document.querySelector(".player-info");
+  const resetbtn = document.querySelector("#reset");
   let currentPlayer;
   let playerOne;
   let playerTwo;
@@ -84,25 +80,25 @@ const gamePlay = (() => {
 
   const gameRound = () => {
     const board = gameBoardModule;
-    const gameStatus = document.querySelector('.game-status');
-    if (currentPlayer.name !== '') {
+    const gameStatus = document.querySelector(".game-status");
+    if (currentPlayer.name !== "") {
       gameStatus.textContent = `${currentPlayer.name}'s Turn`;
     } else {
-      gameStatus.textContent = 'Board: ';
+      gameStatus.textContent = "Board: ";
     }
 
-    board.gameBoard.addEventListener('click', (e) => {
+    board.gameBoard.addEventListener("click", (e) => {
       const move = currentPlayer.playerTurn(board, e.target);
       if (move !== null) {
         board.boardArr[move] = `${currentPlayer.symbol}`;
-        if (currentPlayer.symbol === 'X') {
-          e.target.classList.add('x');
+        if (currentPlayer.symbol === "X") {
+          e.target.classList.add("x");
         } else {
-          e.target.classList.add('o');
+          e.target.classList.add("o");
         }
         board.render();
         const winStatus = board.checkWinCombo();
-        if (winStatus === 'Tie') {
+        if (winStatus === "Tie") {
           gameStatus.textContent = "It's a Tie! You're both Losers 😝";
         } else if (winStatus === null) {
           switchPlayer();
@@ -111,9 +107,9 @@ const gamePlay = (() => {
           gameStatus.textContent = `Congratulations ${currentPlayer.name}! You won! 🥳🏆`;
           setTimeout(() => {
             board.resetBoard();
-            document.querySelectorAll('.cell').forEach((e) => {
-              e.classList.remove('x');
-              e.classList.remove('o');
+            document.querySelectorAll(".cell").forEach((e) => {
+              e.classList.remove("x");
+              e.classList.remove("o");
             });
             board.render();
           }, 3000);
@@ -121,19 +117,16 @@ const gamePlay = (() => {
       }
     });
   };
-// const gameStart = () => {
-//   if (playerOneName.value !== "" && playerTwoName.value !== "") {
-//     playerOne = player(playerOneName.value, "X");
-//     playerTwo = player(playerTwoName.value, "O");
-//     currentPlayer = playerOne;
-//     gameRound();
-//   }
-// };
-  
+  // const gameStart = () => {
+  //   if (playerOneName.value !== "" && playerTwoName.value !== "") {
+  //     playerOne = player(playerOneName.value, "X");
+  //     playerTwo = player(playerTwoName.value, "O");
+  //     currentPlayer = playerOne;
+  //     gameRound();
+  //   }
+  // };
 
   document.addEventListener("DOMContentLoaded", function () {
-    
-
     form.addEventListener("submit", (e) => {
       e.preventDefault();
       if (playerOneName.value !== "" && playerTwoName.value !== "") {
@@ -154,15 +147,14 @@ const gamePlay = (() => {
       document.querySelector("#player2").value = "";
       window.location.reload();
     });
-    
-    // gamePlay.gameStart();
-
   });
   return { switchPlayer, gameRound, reset };
-  
-
-  
 })();
-// console.log(gamePlay.reset);
 
-module.exports = { gameBoardModule, player, gamePlay, reset };
+const Emptyboard = ["", "", "", "", "", "", "", "", ""];
+
+module.exports = {
+  gamePlay,
+  gameBoardModule,
+  resetB: () => Emptyboard,
+};
